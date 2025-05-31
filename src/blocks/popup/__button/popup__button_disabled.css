@@ -1,0 +1,17 @@
+.popup__button_disabled {
+  background-color: #ffffff;
+  color: #c2c2c2;
+  cursor: default;
+  border: 1px solid #c2c2c2;
+}
+
+/* Стили для активной кнопки (черная) */
+.popup__button:not(.popup__button_disabled) {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* Стили для кнопки при наведении (серая) */
+.popup__button:not(.popup__button_disabled):hover {
+  background-color: #808080;
+}
