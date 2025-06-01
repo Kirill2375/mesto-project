@@ -1,4 +1,4 @@
-export const initialCards = [
+/*export const initialCards = [
     {
       name: "Архыз",
       link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
@@ -23,7 +23,7 @@ export const initialCards = [
       name: "Байкал",
       link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
     }
-];
+];*/
 
 
 export function createCard(cardData, deleteCallback, likeCallback, openImageCallback) {
@@ -42,6 +42,7 @@ export function createCard(cardData, deleteCallback, likeCallback, openImageCall
   
   return cardElement;
 }
+
 
 export function deleteCard(evt) {
   evt.target.closest('.card').remove();

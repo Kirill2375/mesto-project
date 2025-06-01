@@ -3,17 +3,12 @@
   height: 50px;
   background: transparent url("../../../images/add-icon.svg") center no-repeat;
   background-size: 22px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
   border-radius: 2px;
-  border: 2px solid #fff;
-  -webkit-transition: 0.3s;
-  -moz-transition: 0.3s;
-  -ms-transition: 0.3s;
-  -o-transition: 0.3s;
-  transition: 0.3s;
+  border: 2px solid #FFFFFF; /* Белая рамка (важно!) */
+  transition: opacity 0.3s ease;
   cursor: pointer;
   margin-left: auto;
+  padding: 0;
 }
 
 .profile__add-button:hover {
@@ -30,5 +25,6 @@
 @media screen and (max-width: 480px) {
   .profile__add-button {
     width: 100%;
+    border: 2px solid #FFFFFF; /* Повторяем для мобильных */
   }
 }
