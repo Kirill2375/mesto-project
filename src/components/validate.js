@@ -17,13 +17,39 @@ function hideInputError(formElement, inputElement, settings) {
 }
 
 function checkInputValidity(formElement, inputElement, settings) {
+  // Проверка URL для полей link и avatar
+  if (inputElement.name === 'link' || inputElement.name === 'avatar') {
+    const urlPattern = /^(https?:\/\/)([\w-]+(\.[\w-]+)+)([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/i;
+    
+    if (inputElement.value && !urlPattern.test(inputElement.value)) {
+      showInputError(formElement, inputElement, 'Введите корректный URL (например: https://example.com/image.jpg)', settings);
+      return;
+    }
+  }
+
   if (!inputElement.validity.valid) {
     showInputError(formElement, inputElement, inputElement.validationMessage, settings);
   } else {
     hideInputError(formElement, inputElement, settings);
   }
 }
+/*
+function checkInputValidity(formElement, inputElement, settings) {
+  if (inputElement.name === 'link') {
+    const urlPattern = /^(https?:\/\/)[^\s]+$/;
+    if (!urlPattern.test(inputElement.value)) {
+      showInputError(formElement, inputElement, 'Введите корректный адрес ссылки', settings);
+      return;
+    }
+  }
 
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage, settings);
+  } else {
+    hideInputError(formElement, inputElement, settings);
+  }
+}
+*/
 function toggleButtonState(inputList, buttonElement, settings) {
   const hasInvalidInput = inputList.some(inputElement => !inputElement.validity.valid);
   if (hasInvalidInput) {

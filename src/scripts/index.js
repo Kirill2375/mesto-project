@@ -148,7 +148,7 @@ function renderCard(cardData, userId) {
   return card;
 }
 
-Promise.all([getProfileInfo(), getInitialCards()])
+/*Promise.all([getProfileInfo(), getInitialCards()])
   .then(([userData, cards]) => {
     userId = userData._id; // Сохраняем userId
     
@@ -160,8 +160,30 @@ Promise.all([getProfileInfo(), getInitialCards()])
       placesList.append(renderCard(cardData, userId)); // Упрощаем вызов
     });
   })
-  .catch(err => console.log(err));
+  .catch(err => console.log(err));*/
+document.querySelector('.profile').classList.add('preload');
+document.querySelector('.places').classList.add('preload');
 
+Promise.all([getProfileInfo(), getInitialCards()])
+  .then(([userData, cards]) => {
+    userId = userData._id;
+    
+    document.querySelector('.profile__title').textContent = userData.name;
+    document.querySelector('.profile__description').textContent = userData.about;
+    document.querySelector('.profile__image').style.backgroundImage = `url(${userData.avatar})`;
+    
+    cards.forEach(cardData => {
+      placesList.append(renderCard(cardData, userId));
+    });
+    
+    // Удалить класс preload после загрузки
+    document.querySelector('.profile').classList.remove('preload');
+    document.querySelector('.places').classList.remove('preload');
+  })
+  .catch(err => {
+    console.log(err);
+    // Можно добавить обработку ошибок, например показать сообщение
+  });
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 cardForm.addEventListener('submit', handleCardFormSubmit);
 
